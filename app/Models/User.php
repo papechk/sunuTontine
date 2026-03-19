@@ -18,10 +18,32 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
+        'telephone',
+        'adresse',
         'email',
         'password',
+        'role',
+        'gestionnaire_id',
     ];
+    // Un gestionnaire a plusieurs tontines
+    public function tontines()
+    {
+        return $this->hasMany(Tontine::class, 'gestionnaire_id');
+    }
+
+    // Un participant appartient à un gestionnaire
+    public function gestionnaire()
+    {
+        return $this->belongsTo(User::class, 'gestionnaire_id');
+    }
+
+    // Un gestionnaire a plusieurs participants
+    public function participants()
+    {
+        return $this->hasMany(User::class, 'gestionnaire_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,6 +65,22 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+        ];
+    }
+
+    public function getSettings(): object
+    {
+        $sidebarMap = [
+            'clair' => 'light',
+            'sombre' => 'dark',
+            'colore' => 'colored',
+            'degrade' => 'gradient',
+            'verre' => 'glass',
+        ];
+
+        return (object) [
+            'primary_color' => config('dashboard.main_color', '#465fff'),
+            'sidebar_style' => $sidebarMap[config('dashboard.sidebar_style', 'clair')] ?? 'light',
         ];
     }
 }

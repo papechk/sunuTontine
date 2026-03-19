@@ -23,11 +23,22 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $roles = ['admin', 'gestionnaire', 'participant'];
+        $role = fake()->randomElement($roles);
+        $gestionnaireId = null;
+        if ($role === 'participant') {
+            // On attribuera le gestionnaire_id dans le seeder pour cohérence
+        }
         return [
-            'name' => fake()->name(),
+            'nom' => fake()->lastName(),
+            'prenom' => fake()->firstName(),
+            'telephone' => fake()->unique()->phoneNumber(),
+            'adresse' => fake()->address(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'role' => $role,
+            'gestionnaire_id' => $gestionnaireId,
             'remember_token' => Str::random(10),
         ];
     }

@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	body {
+		@apply font-outfit antialiased text-gray-700 dark:text-gray-300;
+	}
+}
+
+@layer components {
+	.menu-item {
+		@apply flex items-center gap-3 px-3.5 py-2.5 font-medium rounded-lg transition-all duration-200;
+	}
+	.menu-item-active {
+		@apply bg-brand-50 text-brand-500 dark:bg-brand-500/10;
+	}
+	.menu-item-inactive {
+		@apply text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white;
+	}
+
+	.card {
+		@apply rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03];
+	}
+	.card-lg {
+		@apply rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03];
+	}
+
+	.btn-primary {
+		@apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-2.5 text-center font-medium text-white shadow-theme-xs hover:bg-brand-600 transition-colors;
+	}
+	.btn-secondary {
+		@apply inline-flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-5 py-2.5 text-center font-medium text-gray-700 hover:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 transition-colors;
+	}
+	.btn-danger {
+		@apply inline-flex items-center justify-center gap-2 rounded-lg bg-error-500 px-5 py-2.5 text-center font-medium text-white shadow-theme-xs hover:bg-error-600 transition-colors;
+	}
+	.btn-success {
+		@apply inline-flex items-center justify-center gap-2 rounded-lg bg-success-500 px-5 py-2.5 text-center font-medium text-white shadow-theme-xs hover:bg-success-600 transition-colors;
+	}
+
+	.input-field {
+		@apply w-full rounded-lg border border-gray-200 bg-transparent py-2.5 px-4 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-gray-800 dark:bg-white/5 dark:focus:border-brand-500;
+	}
+
+	.badge {
+		@apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+	}
+	.badge-success {
+		@apply bg-success-50 text-success-600 dark:bg-success-500/10 dark:text-success-500;
+	}
+	.badge-error {
+		@apply bg-error-50 text-error-600 dark:bg-error-500/10 dark:text-error-500;
+	}
+	.badge-warning {
+		@apply bg-warning-50 text-warning-600 dark:bg-warning-500/10 dark:text-warning-500;
+	}
+	.badge-brand {
+		@apply bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-500;
+	}
+}
