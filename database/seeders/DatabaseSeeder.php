@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $admin = \App\Models\User::factory()->create([
             'nom' => 'Admin',
             'prenom' => 'Super',
-            'email' => 'admin@sunutontine.com',
+            'email' => 'admin@example.com',
             'role' => 'admin',
         ]);
 
